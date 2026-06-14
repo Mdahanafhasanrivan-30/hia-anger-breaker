@@ -24,6 +24,6 @@
     }
   },
   "env": {
-    "JWT_SECRET": "HiaIsAwesome2024!"
+    "JWT_SECRET": "@HiaIsAwesome2024!"
   }
 }
