@@ -137,7 +137,7 @@ git push -u origin main
 6. Vercel auto-fills settings (leave as default)
 7. Under **"Environment Variables"**, add:
    - **Name:** `JWT_SECRET`
-   - **Value:** `@HiaIsAwesome2024!`
+   - **Value:** `HiaIsAwesome2024!` (just paste the value, no @ symbol)
 8. Click **"Deploy"**
 
 **Wait 2-5 minutes...**
