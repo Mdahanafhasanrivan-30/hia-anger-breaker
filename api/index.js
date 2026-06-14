@@ -36,12 +36,12 @@ const LOVE_REASONS = [
 // ============ ROUTES ============
 
 // Health check
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({ status: "Server is running, Rivan loves Hia! ❤️" });
 });
 
 // POST: Verify custom password
-app.post("/verify", (req, res) => {
+app.post("/api/verify", (req, res) => {
   const { answer } = req.body;
 
   // Normalize and check answer
@@ -67,7 +67,7 @@ app.post("/verify", (req, res) => {
 });
 
 // GET: Fetch love reasons
-app.get("/love-reasons", (req, res) => {
+app.get("/api/love-reasons", (req, res) => {
   // Simple auth check (token in header)
   const token = req.headers.authorization?.split(" ")[1];
   
@@ -87,7 +87,7 @@ app.get("/love-reasons", (req, res) => {
 });
 
 // GET: Get game config
-app.get("/game-config", (req, res) => {
+app.get("/api/game-config", (req, res) => {
   res.json({
     gameName: "Make Hia Smile",
     description: "Help Rivan make Hia's anger disappear!",
