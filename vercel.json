@@ -22,8 +22,6 @@
       "memory": 1024,
       "maxDuration": 30
     }
-  },
-  "env": {
-    "JWT_SECRET": "@HiaIsAwesome2024!"
   }
+  
 }
