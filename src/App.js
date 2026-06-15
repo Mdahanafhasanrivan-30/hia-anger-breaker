@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LockScreen from './components/LockScreen';
 import FunnyGame from './components/FunnyGame';
 import LoveRevelation from './components/LoveRevelation';
+import API_BASE_URL from './config';
 
 function App() {
   const [screen, setScreen] = useState('lock'); // 'lock', 'game', 'love'
@@ -20,7 +21,7 @@ function App() {
   const handleUnlock = async (answer) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/verify', {
+      const response = await fetch(`${API_BASE_URL}/api/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

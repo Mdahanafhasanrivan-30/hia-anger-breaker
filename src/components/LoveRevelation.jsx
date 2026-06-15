@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, ChevronDown } from 'lucide-react';
+import API_BASE_URL from '../config';
 
 const LoveRevelation = ({ token, onRestart }) => {
   const [reasons, setReasons] = useState([]);
@@ -13,7 +14,7 @@ const LoveRevelation = ({ token, onRestart }) => {
 
   const fetchLoveReasons = async () => {
     try {
-      const response = await fetch('/api/love-reasons', {
+      const response = await fetch(`${API_BASE_URL}/api/love-reasons`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
