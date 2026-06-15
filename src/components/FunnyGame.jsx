@@ -49,7 +49,7 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
 
       if (newHappiness >= TARGET_HAPPINESS) {
         setGamePhase('victory');
-        setTimeout(onGameComplete, 1500);
+        setTimeout(onGameComplete, 800);
       } else if (escapeAttempts < 3) {
         // Keep trying to escape
         moveButton();
@@ -64,7 +64,7 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
 
       if (newHappiness >= TARGET_HAPPINESS) {
         setGamePhase('victory');
-        setTimeout(onGameComplete, 1500);
+        setTimeout(onGameComplete, 800);
       }
     }
   };
@@ -115,7 +115,7 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
           </div>
           <div className="w-full bg-gray-300 rounded-full h-8 overflow-hidden shadow-md">
             <div
-              className="bg-gradient-to-r from-pink-400 to-red-500 h-full flex items-center justify-center transition-all duration-500 ease-out"
+              className="bg-gradient-to-r from-pink-400 to-red-500 h-full flex items-center justify-center transition-all duration-300 ease-out"
               style={{ width: `${happinessPercentage}%` }}
             >
               {happinessPercentage > 20 && (
@@ -132,7 +132,7 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
         <div className="bg-white rounded-3xl shadow-2xl p-12 mb-8 relative min-h-96 flex flex-col items-center justify-center">
           {/* Animated Hia Avatar */}
           <div className="mb-8 relative">
-            <div className={`text-9xl transition-all duration-300 ${
+            <div className={`text-9xl transition-all duration-200 ${
               happiness < 33 ? 'animate-bounce' :
               happiness < 66 ? 'scale-110' :
               'scale-125'
@@ -157,8 +157,9 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
                 position: 'absolute',
                 left: `${buttonPos.x}px`,
                 top: `${buttonPos.y}px`,
+                transition: 'all 0.1s ease-out'
               }}
-              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:scale-110 transition-all transform active:scale-95 shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:scale-110 active:scale-95 shadow-lg"
             >
               🤝 Accept Apology
             </button>
@@ -181,7 +182,7 @@ const FunnyGame = ({ onGameComplete, onRestart }) => {
           {gamePhase === 'normal' && (
             <button
               onClick={handleAcceptClick}
-              className="px-8 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-2xl rounded-2xl hover:scale-110 transition-all transform active:scale-95 shadow-lg"
+              className="px-8 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-2xl rounded-2xl hover:scale-110 active:scale-95 shadow-lg transition-all duration-150"
             >
               💪 Click to Make Her Smile!
             </button>
