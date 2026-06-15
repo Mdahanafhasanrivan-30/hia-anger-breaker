@@ -1,6 +1,5 @@
-// Vercel Serverless Function for Express API
-// Deploy this as a backend on Vercel
-
+// api/index.js
+// Vercel Serverless Function Handler
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
@@ -11,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ============ HARDCODED DATA (Skip MongoDB for speed!) ============
+// ============ HARDCODED DATA ============
 const CUSTOM_PASSWORD_ANSWER = "smile"; // Change to your custom answer
 const JWT_SECRET = process.env.JWT_SECRET || "@HiaIsAwesome2024!";
 
@@ -36,15 +35,14 @@ const LOVE_REASONS = [
 // ============ ROUTES ============
 
 // Health check
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({ status: "Server is running, Rivan loves Hia! ❤️" });
 });
 
 // POST: Verify custom password
-app.post("/verify", (req, res) => {
+app.post("/api/verify", (req, res) => {
   const { answer } = req.body;
 
-  // Normalize and check answer
   if (!answer || answer.toLowerCase().trim() !== CUSTOM_PASSWORD_ANSWER.toLowerCase()) {
     return res.status(401).json({
       success: false,
@@ -52,7 +50,6 @@ app.post("/verify", (req, res) => {
     });
   }
 
-  // Create JWT token
   const token = jwt.sign(
     { user: "hia", timestamp: new Date().toISOString() },
     JWT_SECRET,
@@ -67,8 +64,7 @@ app.post("/verify", (req, res) => {
 });
 
 // GET: Fetch love reasons
-app.get("/love-reasons", (req, res) => {
-  // Simple auth check (token in header)
+app.get("/api/love-reasons", (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   
   if (!token) {
@@ -87,7 +83,7 @@ app.get("/love-reasons", (req, res) => {
 });
 
 // GET: Get game config
-app.get("/game-config", (req, res) => {
+app.get("/api/game-config", (req, res) => {
   res.json({
     gameName: "Make Hia Smile",
     description: "Help Rivan make Hia's anger disappear!",
@@ -96,8 +92,11 @@ app.get("/game-config", (req, res) => {
   });
 });
 
-// Default export for Vercel
-module.exports = app;
+// IMPORTANT: For Vercel, export as default (handler function)
+module.exports = (req, res) => {
+  // Don't instantiate app here - just pass through
+  return app(req, res);
+};
 
 // If running locally:
 if (process.env.NODE_ENV !== "production") {
